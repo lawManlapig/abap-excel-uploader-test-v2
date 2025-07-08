@@ -1,0 +1,33 @@
+managed implementation in class zbp_law_i_buildings unique;
+strict ( 2 );
+
+define behavior for ZLAW_I_Buildings alias Building
+persistent table zlaw_buildings
+lock master
+authorization master ( instance )
+late numbering
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly ) BuildingId, CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+
+  validation validateNRooms on save { create; field NRooms; }
+
+  mapping for zlaw_buildings
+    {
+      BuildingId    = building_id;
+      BuildingName  = building_name;
+      NRooms        = n_rooms;
+      AddressLine   = address_line;
+      City          = city;
+      State         = state;
+      Country       = country;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+}

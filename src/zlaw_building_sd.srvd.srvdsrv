@@ -1,0 +1,4 @@
+@EndUserText.label: 'Building Service'
+define service ZLAW_Building_SD {
+  expose ZLAW_C_Buildings as Buildings;
+}
